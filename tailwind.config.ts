@@ -11,6 +11,14 @@ const config: Config = {
     extend: {
       colors: {
         brandPurple: "#4A235A",
+        /** Higher luminosity accent for dark mode (FT-style purple on charcoal) */
+        brandPurpleLight: "#C9A3D9",
+        editorial: {
+          ink: "#F8FAFC",
+          muted: "#94A3B8",
+          charcoal: "#121212",
+          deep: "#0F1115",
+        },
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "Georgia", "serif"],
@@ -18,9 +26,9 @@ const config: Config = {
       },
       backgroundImage: {
         "skeleton-shine":
-          "linear-gradient(90deg, rgba(74,35,90,0.15) 0%, rgba(74,35,90,0.35) 50%, rgba(74,35,90,0.15) 100%)",
+          "linear-gradient(90deg, rgba(74,35,90,0.06) 0%, rgba(74,35,90,0.14) 45%, rgba(74,35,90,0.06) 100%)",
         "skeleton-shine-dark":
-          "linear-gradient(90deg, rgba(74,35,90,0.25) 0%, rgba(120,70,140,0.45) 50%, rgba(74,35,90,0.25) 100%)",
+          "linear-gradient(90deg, #2a2438 0%, #3a3248 35%, #1e1c26 70%, #252030 100%)",
       },
     },
   },

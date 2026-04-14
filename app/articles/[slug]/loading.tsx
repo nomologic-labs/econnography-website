@@ -11,7 +11,7 @@ export default function ArticleLoading() {
           <div className="skeleton-pulse h-8 w-32 rounded-full" />
         </div>
       </div>
-      <div className="skeleton-pulse aspect-[16/9] w-full max-w-5xl rounded-xl" />
+      <div className="skeleton-pulse aspect-video w-full max-w-5xl rounded-xl" />
       <div className="space-y-4">
         <div className="skeleton-pulse h-4 w-full rounded-md" />
         <div className="skeleton-pulse h-4 w-full rounded-md" />

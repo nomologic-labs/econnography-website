@@ -8,6 +8,7 @@ import { getAllArticles, getArticleBySlug, getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
 import { formatReadingTime } from "@/lib/reading-time";
 import Link from "next/link";
+import { LiveViewCount } from "@/components/LiveViewCount";
 
 type Props = { params: { slug: string } };
 
@@ -29,7 +30,6 @@ export default function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const hero = getHeroSrc(article.slug, article.hasHero);
-
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: areaTitle(article.area), href: areaHref(article.area) },
@@ -42,20 +42,29 @@ export default function ArticlePage({ params }: Props) {
         <header className="mx-auto max-w-3xl">
           <Link
             href={areaHref(article.area)}
-            className="inline-block font-sans text-xs font-semibold uppercase tracking-wide text-brandPurple transition-colors hover:text-brandPurple hover:underline dark:text-brandPurple/90"
+            className="editorial-meta inline-block text-brandPurple transition-colors hover:text-brandPurple dark:text-brandPurpleLight dark:hover:text-brandPurpleLight"
           >
             {areaTitle(article.area)}
           </Link>
-          <h1 className="mt-3 font-serif text-4xl font-semibold leading-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl">
+          <h1 className="mt-4 font-serif text-4xl font-semibold tracking-tight leading-tight text-zinc-950 dark:text-editorial-ink sm:text-5xl">
             {article.title}
           </h1>
           {article.description ? (
-            <p className="mt-4 font-sans text-xl text-zinc-700 dark:text-zinc-300">{article.description}</p>
+            <p className="mt-5 font-sans text-xl leading-relaxed text-zinc-600 dark:text-editorial-muted">
+              {article.description}
+            </p>
           ) : null}
 
-          <div className="mt-4 flex flex-wrap items-center gap-4 font-sans text-sm text-zinc-500 dark:text-zinc-500">
-            {article.date ? <time dateTime={article.date}>{article.date}</time> : null}
-            <span>{formatReadingTime(article.content)}</span>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+            {article.date ? (
+              <time dateTime={article.date} className="editorial-meta text-zinc-600 dark:text-editorial-muted">
+                {article.date}
+              </time>
+            ) : null}
+            <span className="editorial-meta text-zinc-600 dark:text-editorial-muted">
+              {formatReadingTime(article.content)}
+            </span>
+            <LiveViewCount slug={article.slug} />
           </div>
 
           <div className="mt-6">
@@ -63,7 +72,7 @@ export default function ArticlePage({ params }: Props) {
           </div>
         </header>
 
-        <div className="relative mx-auto mt-10 aspect-[16/9] max-w-5xl overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-900">
+        <div className="relative mx-auto mt-10 aspect-video max-w-5xl overflow-hidden rounded-xl bg-zinc-100 dark:bg-editorial-deep">
           <Image
             src={hero}
             alt={article.title}

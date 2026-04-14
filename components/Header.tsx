@@ -1,19 +1,27 @@
 import { Logo } from "./Logo";
 import { SocialIcons } from "./SocialIcons";
 import { HeaderNav } from "./HeaderNav";
+import { HeaderSearch } from "./HeaderSearch";
 
 export function Header() {
   return (
-    <header className="border-b-4 border-brandPurple bg-white/90 backdrop-blur dark:bg-zinc-950/90">
-      <div className="mx-auto max-w-7xl px-4 pb-5 pt-5 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <Logo />
-          <SocialIcons />
+    <header className="bg-white dark:bg-[#181B22]">
+      <div className="mx-auto max-w-6xl px-4 pb-4 pt-5 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center gap-y-4 md:flex-nowrap md:gap-6">
+          <div className="flex shrink-0 items-center">
+            <Logo />
+          </div>
+          <div className="order-3 w-full min-w-0 flex-1 md:order-none md:max-w-xl md:px-2 lg:mx-auto lg:max-w-2xl">
+            <HeaderSearch />
+          </div>
+          <div className="ml-auto flex shrink-0 items-center md:ml-0">
+            <SocialIcons />
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8 lg:py-5">
+      <div className="border-t border-slate-200/80 dark:border-slate-800/70">
+        <div className="mx-auto max-w-6xl px-4 py-3.5 sm:px-6 lg:px-8 lg:py-4">
           <HeaderNav />
         </div>
       </div>

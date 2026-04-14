@@ -5,49 +5,55 @@ import { getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
 import { HashtagBadgeGroup } from "./HashtagBadge";
 import { formatReadingTime } from "@/lib/reading-time";
+import { TrackedArticleLink } from "./TrackedArticleLink";
 
 export function ArticleListItemRow({ article }: { article: ArticleListItem }) {
   const hero = getHeroSrc(article.slug, article.hasHero);
 
   return (
-    <article className="grid grid-cols-1 gap-6 border-b border-zinc-200 py-10 sm:grid-cols-12 dark:border-zinc-800">
-      <div className="sm:col-span-8">
+    <article className="group/row grid grid-cols-1 gap-8 rounded-xl border border-slate-200/80 bg-white p-6 shadow-sm sm:grid-cols-12 sm:gap-10 sm:p-7 dark:border-slate-800/60 dark:bg-[#181B22] dark:shadow-none">
+      <div className="space-y-3 sm:col-span-7 sm:pr-8 md:pr-10">
         <Link
           href={areaHref(article.area)}
-          className="inline-block font-sans text-xs font-semibold uppercase tracking-wide text-brandPurple hover:underline dark:text-brandPurple/90"
+          className="editorial-meta inline-block text-brandPurple hover:text-brandPurple dark:text-brandPurpleLight dark:hover:text-brandPurpleLight"
         >
           {areaTitle(article.area)}
         </Link>
-        <h2 className="mt-2 font-serif text-2xl font-semibold text-zinc-950 dark:text-zinc-50">
-          <Link href={`/articles/${article.slug}`} className="hover:text-brandPurple dark:hover:text-brandPurple/90">
+        <h2 className="font-serif text-2xl font-semibold tracking-tight leading-tight text-zinc-950 dark:text-editorial-ink">
+          <TrackedArticleLink
+            slug={article.slug}
+            href={`/articles/${article.slug}`}
+            className="transition-colors duration-300 group-hover/row:text-brandPurple dark:group-hover/row:text-brandPurpleLight"
+          >
             {article.title}
-          </Link>
+          </TrackedArticleLink>
         </h2>
         {article.description ? (
-          <p className="mt-2 font-sans text-zinc-700 dark:text-zinc-300">{article.description}</p>
+          <p className="font-sans leading-relaxed text-zinc-600 dark:text-editorial-muted">{article.description}</p>
         ) : null}
-        <div className="mt-3 flex flex-wrap items-center gap-3">
-          <span className="font-sans text-xs text-zinc-500 dark:text-zinc-500">
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <span className="editorial-meta text-zinc-600 dark:text-editorial-muted">
             {formatReadingTime(article.content)}
           </span>
         </div>
-        <div className="mt-4">
+        <div className="pt-2">
           <HashtagBadgeGroup tags={article.tags} />
         </div>
       </div>
-      <Link
+      <TrackedArticleLink
+        slug={article.slug}
         href={`/articles/${article.slug}`}
-        className="relative aspect-[16/10] w-full overflow-hidden rounded-lg bg-zinc-100 sm:col-span-4 dark:bg-zinc-900"
+        className="relative aspect-video w-full overflow-hidden rounded-xl bg-zinc-100 sm:col-span-5 dark:bg-[#0F1115]"
       >
         <Image
           src={hero}
           alt={article.title}
           fill
-          className="object-cover"
-          sizes="(min-width: 640px) 33vw, 100vw"
+          className="object-cover transition-transform duration-700 ease-in-out group-hover/row:scale-105"
+          sizes="(min-width: 640px) 42vw, 100vw"
           unoptimized={hero.startsWith("/api/")}
         />
-      </Link>
+      </TrackedArticleLink>
     </article>
   );
 }

@@ -1,7 +1,7 @@
 const items = [
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/econography_gafl/",
     icon: InstagramIcon,
   },
   {
@@ -11,7 +11,7 @@ const items = [
   },
   {
     name: "GitHub",
-    href: "#",
+    href: "https://github.com/opus-ddr/econnography-website",
     icon: GitHubIcon,
   },
 ] as const;
@@ -23,8 +23,10 @@ export function SocialIcons() {
         <a
           key={name}
           href={href}
-          aria-label={`${name} (placeholder)`}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brandPurple/25 text-brandPurple transition hover:border-brandPurple hover:bg-brandPurple/10 dark:border-brandPurple/40 dark:hover:bg-brandPurple/15"
+          aria-label={name}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brandPurple/25 bg-white/50 text-brandPurple backdrop-blur-sm transition hover:border-brandPurple hover:bg-brandPurple/10 dark:border-white/15 dark:bg-white/[0.06] dark:text-brandPurpleLight dark:hover:border-brandPurpleLight/40 dark:hover:bg-brandPurpleLight/10"
         >
           <Icon className="h-5 w-5" />
         </a>

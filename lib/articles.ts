@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import type { AreaSlug } from "./areas";
 import { normalizeArea } from "./areas";
+import { getViewCountMap } from "./views";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -104,14 +105,71 @@ export function getFeaturedAndRest(): {
   rest: ArticleListItem[];
 } {
   const all = getAllArticles();
-  const featured =
-    all.find((a) => a.featured) ?? all[0] ?? null;
-  const withoutFeatured = featured
-    ? all.filter((a) => a.slug !== featured.slug)
-    : all;
-  const sidebar = withoutFeatured.slice(0, 2);
-  const rest = withoutFeatured.slice(2);
+  const featured = all[0] ?? null;
+  const rest = all.slice(1, 4);
+  const viewCounts = getViewCountMap();
+  const usedSlugs = new Set([
+    ...(featured ? [featured.slug] : []),
+    ...rest.map((a) => a.slug),
+  ]);
+
+  const byPopularity = [...all]
+    .sort((a, b) => {
+      const diff = (viewCounts[b.slug] ?? 0) - (viewCounts[a.slug] ?? 0);
+      if (diff !== 0) return diff;
+      return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+    });
+
+  const sidebar = byPopularity
+    .filter((a) => !usedSlugs.has(a.slug))
+    .slice(0, 2);
+
+  if (sidebar.length < 2) {
+    const fallback = byPopularity
+      .filter((a) => !sidebar.some((s) => s.slug === a.slug))
+      .slice(0, 2 - sidebar.length);
+    sidebar.push(...fallback);
+  }
+
   return { featured, sidebar, rest };
+}
+
+export function getViewCountForArticle(slug: string): number {
+  const map = getViewCountMap();
+  return map[slug] ?? 0;
+}
+
+export function getArticlesSortedByPopularity(articles: ArticleListItem[]): ArticleListItem[] {
+  const viewCounts = getViewCountMap();
+  return [...articles].sort((a, b) => {
+    const diff = (viewCounts[b.slug] ?? 0) - (viewCounts[a.slug] ?? 0);
+    if (diff !== 0) return diff;
+    return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+  });
+}
+
+export function getHomepageSelection(): {
+  main: ArticleListItem | null;
+  spotlight: ArticleListItem[];
+  latestAnalysis: ArticleListItem[];
+} {
+  const all = getAllArticles();
+  if (all.length === 0) return { main: null, spotlight: [], latestAnalysis: [] };
+
+  const selected = all.slice(0, 4);
+  const hasEconomics = selected.some((a) => a.area === "economics-reviews");
+  const hasFinance = selected.some((a) => a.area === "finance-reviews");
+
+  if (!(hasEconomics && hasFinance)) {
+    const missingArea = hasEconomics ? "finance-reviews" : "economics-reviews";
+    const fallback = all.find((a, idx) => idx >= 4 && a.area === missingArea);
+    if (fallback) selected[selected.length - 1] = fallback;
+  }
+
+  const main = selected[0] ?? null;
+  const spotlight = selected.slice(1, 3);
+  const latestAnalysis = selected.slice(3, 4);
+  return { main, spotlight, latestAnalysis };
 }
 
 export function resolveMarkdownImageSrc(

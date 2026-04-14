@@ -30,10 +30,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
-      <body className="bg-white font-sans text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+      <body className="bg-[#F8FAFC] font-sans text-zinc-900 dark:bg-[#0F1115] dark:text-editorial-ink">
         <Providers>
           <Header />
-          <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">{children}</main>
+          <hr className="h-px w-full border-0 bg-slate-200/80 dark:bg-slate-800/70" />
+          <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">{children}</main>
+          <hr className="h-px w-full border-0 bg-slate-200/80 dark:bg-slate-800/70" />
           <Footer />
           <ThemeToggle />
           <BackToTop />

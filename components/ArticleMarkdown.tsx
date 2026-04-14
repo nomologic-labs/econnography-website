@@ -19,7 +19,7 @@ export function ArticleMarkdown({
         <img
           src={resolved}
           alt={alt ?? ""}
-          className="my-10 w-full rounded-lg border border-zinc-200 dark:border-zinc-800"
+          className="my-10 w-full rounded-lg border border-zinc-200/90 dark:border-white/[0.08]"
           loading="lazy"
         />
       );
@@ -30,7 +30,7 @@ export function ArticleMarkdown({
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={components}
-      className="prose prose-zinc max-w-none font-sans dark:prose-invert prose-headings:font-serif prose-a:text-brandPurple prose-blockquote:border-brandPurple/40"
+      className="prose prose-zinc max-w-none font-sans dark:prose-invert prose-headings:font-serif prose-headings:tracking-tight prose-headings:leading-tight prose-p:text-zinc-600 dark:prose-p:text-editorial-muted prose-blockquote:border-brandPurple/40 dark:prose-blockquote:border-brandPurpleLight/35 prose-a:text-brandPurple prose-a:no-underline hover:prose-a:underline dark:prose-a:text-brandPurpleLight"
     >
       {content}
     </ReactMarkdown>

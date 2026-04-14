@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const floatingClass =
-  "fixed bottom-8 left-6 z-50 shadow-lg hover:shadow-xl sm:bottom-10 sm:left-8";
+  "fixed bottom-8 left-6 z-50 sm:bottom-10 sm:left-8";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -15,7 +15,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <span
-        className={`inline-flex h-11 w-11 rounded-full border border-brandPurple/30 bg-white/80 dark:bg-zinc-900/80 ${floatingClass}`}
+        className={`inline-flex h-12 w-12 rounded-2xl border border-white/20 bg-white/40 dark:border-white/10 dark:bg-white/5 ${floatingClass}`}
         aria-hidden
       />
     );
@@ -27,7 +27,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={`group inline-flex h-11 w-11 items-center justify-center rounded-full border border-brandPurple/40 bg-white text-brandPurple transition hover:scale-[1.03] hover:border-brandPurple hover:text-brandPurple dark:border-brandPurple/50 dark:bg-zinc-950 dark:text-brandPurple/90 dark:hover:text-brandPurple ${floatingClass}`}
+      className={`group inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/25 bg-white/70 text-brandPurple shadow-lg shadow-black/5 backdrop-blur-xl transition hover:border-brandPurple/30 hover:bg-white/90 dark:border-white/15 dark:bg-white/[0.08] dark:text-brandPurpleLight dark:shadow-black/40 dark:backdrop-blur-xl dark:hover:border-white/25 dark:hover:bg-white/[0.12] ${floatingClass}`}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       <span className="sr-only">Toggle color theme</span>

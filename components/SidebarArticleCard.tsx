@@ -9,7 +9,7 @@ export function SidebarArticleCard({ article }: { article: ArticleListItem }) {
   const hero = getHeroSrc(article.slug, article.hasHero);
 
   return (
-    <article className="flex gap-4 border-b border-zinc-200 pb-8 dark:border-zinc-800">
+    <article className="flex gap-4 rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm dark:border-slate-800/60 dark:bg-[#181B22] dark:shadow-none">
       <div className="min-w-0 flex-1 space-y-2">
         <Link
           href={areaHref(article.area)}
@@ -33,7 +33,7 @@ export function SidebarArticleCard({ article }: { article: ArticleListItem }) {
 
       <Link
         href={`/articles/${article.slug}`}
-        className="relative h-28 w-32 shrink-0 overflow-hidden rounded-md bg-zinc-100 dark:bg-zinc-900"
+        className="relative h-28 w-32 shrink-0 overflow-hidden rounded-md bg-zinc-100 dark:bg-[#0F1115]"
       >
         <span className="sr-only">Open article</span>
         <Image
