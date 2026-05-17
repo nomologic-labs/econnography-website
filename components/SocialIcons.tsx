@@ -11,7 +11,7 @@ const items = [
   },
   {
     name: "GitHub",
-    href: "https://github.com/opus-ddr/econnography-website",
+    href: "https://github.com/nomologic-labs/econnography-website",
     icon: GitHubIcon,
   },
 ] as const;
