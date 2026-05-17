@@ -7,14 +7,8 @@ type Props = ComponentProps<typeof Link> & {
   slug: string;
 };
 
+/** Article links; view counts are recorded on the article page (not on click). */
 export function TrackedArticleLink({ slug, onClick, ...props }: Props) {
-  return (
-    <Link
-      {...props}
-      onClick={(event) => {
-        fetch(`/api/views/${slug}`, { method: "POST", keepalive: true }).catch(() => undefined);
-        onClick?.(event);
-      }}
-    />
-  );
+  void slug;
+  return <Link {...props} onClick={onClick} />;
 }

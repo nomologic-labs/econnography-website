@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ArticleListItem } from "@/lib/articles";
 import { getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
+import { ArticleBannerDescription } from "./ArticleBannerDescription";
 import { HashtagBadgeGroup } from "./HashtagBadge";
 import { formatReadingTime } from "@/lib/reading-time";
 import { TrackedArticleLink } from "./TrackedArticleLink";
@@ -29,15 +30,19 @@ export function ArticleListItemRow({ article }: { article: ArticleListItem }) {
           </TrackedArticleLink>
         </h2>
         {article.description ? (
-          <p className="font-sans leading-relaxed text-zinc-600 dark:text-editorial-muted">{article.description}</p>
+          <ArticleBannerDescription
+            text={article.description}
+            lines={3}
+            className="font-sans leading-relaxed text-zinc-600 dark:text-editorial-muted"
+          />
         ) : null}
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <span className="editorial-meta text-zinc-600 dark:text-editorial-muted">
             {formatReadingTime(article.content)}
           </span>
         </div>
-        <div className="pt-2">
-          <HashtagBadgeGroup tags={article.tags} />
+        <div className="min-w-0 pt-2">
+          <HashtagBadgeGroup tags={article.tags} className="w-full min-w-0 sm:flex-nowrap" />
         </div>
       </div>
       <TrackedArticleLink

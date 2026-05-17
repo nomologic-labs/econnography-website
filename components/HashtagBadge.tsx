@@ -4,7 +4,7 @@ export function HashtagBadge({ tag }: { tag: string }) {
   const label = `Coming Soon: Filter by #${tag}`;
 
   return (
-    <span className="group relative inline-flex cursor-not-allowed">
+    <span className="group relative inline-flex max-w-full shrink-0 cursor-not-allowed whitespace-nowrap">
       <span className="inline-flex items-center rounded-full border border-brandPurple/35 bg-brandPurple/5 px-3 py-1 text-xs font-medium text-brandPurple dark:border-brandPurple/45 dark:bg-brandPurple/15 dark:text-brandPurple/90">
         #{tag}
       </span>
@@ -18,12 +18,24 @@ export function HashtagBadge({ tag }: { tag: string }) {
   );
 }
 
-export function HashtagBadgeGroup({ tags }: { tags: string[] }) {
+export function HashtagBadgeGroup({
+  tags,
+  className = "",
+}: {
+  tags: string[];
+  className?: string;
+}) {
   if (!tags.length) return null;
   return (
-    <div className="flex flex-wrap gap-2">
+    <div
+      className={`flex min-w-0 flex-row flex-wrap items-center gap-2 ${className}`.trim()}
+      role="list"
+      aria-label="Article tags"
+    >
       {tags.map((t) => (
-        <HashtagBadge key={t} tag={t} />
+        <span key={t} role="listitem" className="inline-flex max-w-full shrink-0">
+          <HashtagBadge tag={t} />
+        </span>
       ))}
     </div>
   );

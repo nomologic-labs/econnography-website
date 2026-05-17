@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ArticleListItem } from "@/lib/articles";
 import { getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
+import { ArticleBannerDescription } from "./ArticleBannerDescription";
 import { HashtagBadgeGroup } from "./HashtagBadge";
 import { TrackedArticleLink } from "./TrackedArticleLink";
 
@@ -59,13 +60,15 @@ export function FeatureArticle({ article }: { article: ArticleListItem }) {
           </h2>
 
           {article.description ? (
-            <p className="max-w-prose line-clamp-3 font-sans text-base leading-[1.7] text-zinc-600 dark:text-editorial-muted sm:text-[1.0625rem] sm:leading-[1.72]">
-              {article.description}
-            </p>
+            <ArticleBannerDescription
+              text={article.description}
+              lines={3}
+              className="max-w-prose font-sans text-base leading-[1.7] text-zinc-600 dark:text-editorial-muted sm:text-[1.0625rem] sm:leading-[1.72]"
+            />
           ) : null}
 
-          <div className="max-w-prose pt-0.5">
-            <HashtagBadgeGroup tags={article.tags} />
+          <div className="min-w-0 pt-0.5">
+            <HashtagBadgeGroup tags={article.tags} className="w-full min-w-0 md:flex-nowrap" />
           </div>
 
         </div>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { ArticleListItem } from "@/lib/articles";
 import { getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
+import { ArticleBannerDescription } from "./ArticleBannerDescription";
+import { ArticleBannerTitle } from "./ArticleBannerTitle";
 import { HashtagBadgeGroup } from "./HashtagBadge";
 
 export function SidebarArticleCard({ article }: { article: ArticleListItem }) {
@@ -18,17 +20,21 @@ export function SidebarArticleCard({ article }: { article: ArticleListItem }) {
           {areaTitle(article.area)}
         </Link>
 
-        <h3 className="font-serif text-lg font-semibold leading-snug text-zinc-950 dark:text-zinc-50">
-          <Link href={`/articles/${article.slug}`} className="hover:text-brandPurple dark:hover:text-brandPurple/90">
-            {article.title}
-          </Link>
-        </h3>
+        <ArticleBannerTitle
+          title={article.title}
+          href={`/articles/${article.slug}`}
+          lines={2}
+        />
 
         {article.description ? (
-          <p className="font-sans text-sm text-zinc-600 dark:text-zinc-400">{article.description}</p>
+          <ArticleBannerDescription
+            text={article.description}
+            lines={2}
+            className="font-sans text-sm text-zinc-600 dark:text-zinc-400"
+          />
         ) : null}
 
-        <HashtagBadgeGroup tags={article.tags} />
+        <HashtagBadgeGroup tags={article.tags} className="w-full min-w-0" />
       </div>
 
       <Link

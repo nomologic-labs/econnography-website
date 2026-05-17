@@ -8,6 +8,8 @@ import { getAllArticles, getArticleBySlug, getHeroSrc } from "@/lib/articles";
 import { areaHref, areaTitle } from "@/lib/areas";
 import { formatReadingTime } from "@/lib/reading-time";
 import Link from "next/link";
+import { ArticleBannerDescription } from "@/components/ArticleBannerDescription";
+import { ArticleViewTracker } from "@/components/ArticleViewTracker";
 import { LiveViewCount } from "@/components/LiveViewCount";
 
 type Props = { params: { slug: string } };
@@ -38,6 +40,7 @@ export default function ArticlePage({ params }: Props) {
 
   return (
     <InternalPageChrome breadcrumbs={breadcrumbs}>
+      <ArticleViewTracker slug={article.slug} />
       <article>
         <header className="mx-auto max-w-3xl">
           <Link
@@ -50,25 +53,26 @@ export default function ArticlePage({ params }: Props) {
             {article.title}
           </h1>
           {article.description ? (
-            <p className="mt-5 font-sans text-xl leading-relaxed text-zinc-600 dark:text-editorial-muted">
-              {article.description}
-            </p>
+            <ArticleBannerDescription
+              text={article.description}
+              lines={4}
+              className="mt-5 font-sans text-xl leading-relaxed text-zinc-600 dark:text-editorial-muted"
+            />
           ) : null}
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-            {article.date ? (
-              <time dateTime={article.date} className="editorial-meta text-zinc-600 dark:text-editorial-muted">
-                {article.date}
-              </time>
-            ) : null}
-            <span className="editorial-meta text-zinc-600 dark:text-editorial-muted">
-              {formatReadingTime(article.content)}
-            </span>
-            <LiveViewCount slug={article.slug} />
-          </div>
-
-          <div className="mt-6">
-            <HashtagBadgeGroup tags={article.tags} />
+          <div className="mt-5 flex min-w-0 flex-col gap-4 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-6 lg:gap-y-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              {article.date ? (
+                <time dateTime={article.date} className="editorial-meta text-zinc-600 dark:text-editorial-muted">
+                  {article.date}
+                </time>
+              ) : null}
+              <span className="editorial-meta text-zinc-600 dark:text-editorial-muted">
+                {formatReadingTime(article.content)}
+              </span>
+              <LiveViewCount slug={article.slug} />
+            </div>
+            <HashtagBadgeGroup tags={article.tags} className="w-full min-w-0 lg:w-auto lg:flex-nowrap" />
           </div>
         </header>
 
