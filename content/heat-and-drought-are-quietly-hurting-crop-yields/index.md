@@ -28,6 +28,8 @@ featured: true
 
 - Rising temperatures and increasing dryness are taking a major toll on global crop yields, particularly for key grains such as wheat, barley, and maize. Heat and drought destroy crops and reduce the amount farmers can harvest. This is a worsening of natural factors, which is a non-price determinant of supply.
 
+![Figure 1](chart.jpg)
+
 ## Consequences
 
 - Because of the worsening of natural conditions (a non-price determinant of supply), the supply curve shifts leftward. This results in excess demand (a shortage). Suppliers respond by raising the price from P to P1. The increase in prices prices some consumers out of the market, moving the quantity from Q to Q1. This changes the equilibrium point from (Q, P) to (Q1, P1).

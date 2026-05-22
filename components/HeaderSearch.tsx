@@ -53,7 +53,7 @@ export function HeaderSearch() {
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => setOpen(results.length > 0)}
         placeholder="Search all article content..."
-        className="w-full rounded-full border border-zinc-300/90 bg-white/80 px-4 py-2.5 text-sm text-zinc-900 shadow-sm outline-none backdrop-blur-sm transition placeholder:text-zinc-400 focus:border-brandPurple focus:ring-2 focus:ring-brandPurple/20 dark:border-white/10 dark:bg-white/[0.06] dark:text-editorial-ink dark:placeholder:text-editorial-muted dark:focus:border-brandPurpleLight dark:focus:ring-brandPurpleLight/20"
+        className="w-full rounded-full border border-zinc-300/90 bg-white/80 px-4 py-2 text-sm leading-tight text-zinc-900 shadow-sm outline-none backdrop-blur-sm transition placeholder:text-zinc-400 focus:border-brandPurple focus:ring-2 focus:ring-brandPurple/20 dark:border-white/10 dark:bg-white/[0.06] dark:text-editorial-ink dark:placeholder:text-editorial-muted dark:focus:border-brandPurpleLight dark:focus:ring-brandPurpleLight/20"
       />
 
       {open && results.length > 0 ? (

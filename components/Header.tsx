@@ -6,8 +6,8 @@ import { HeaderSearch } from "./HeaderSearch";
 export function Header() {
   return (
     <header className="bg-white dark:bg-[#181B22]">
-      <div className="mx-auto max-w-6xl px-4 pb-4 pt-5 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center gap-y-4 md:flex-nowrap md:gap-6">
+      <div className="mx-auto max-w-6xl px-4 py-1 sm:px-6 sm:py-1.5 lg:px-8">
+        <div className="flex flex-wrap items-center gap-y-2 md:flex-nowrap md:gap-6">
           <div className="flex shrink-0 items-center">
             <Logo />
           </div>

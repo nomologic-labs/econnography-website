@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { InternalPageChrome } from "@/components/BreadcrumbsTrail";
 
 export const metadata: Metadata = {
@@ -9,6 +10,24 @@ export default function AboutPage() {
   return (
     <InternalPageChrome breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}>
       <article className="mx-auto max-w-3xl">
+        <div className="mb-8 flex justify-center sm:justify-start">
+          <Image
+            src="/logo/light/with-typography.jpg"
+            alt="Econography"
+            width={320}
+            height={120}
+            className="h-auto w-full max-w-xs object-contain dark:hidden sm:max-w-sm"
+            priority
+          />
+          <Image
+            src="/logo/dark/with-typography.jpg"
+            alt="Econography"
+            width={320}
+            height={120}
+            className="hidden h-auto w-full max-w-xs object-contain dark:block sm:max-w-sm"
+            priority
+          />
+        </div>
         <h1 className="font-serif text-4xl font-semibold tracking-tight text-zinc-950 dark:text-editorial-ink">
           About Econography
         </h1>

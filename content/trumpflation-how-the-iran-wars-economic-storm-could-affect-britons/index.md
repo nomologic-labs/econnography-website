@@ -49,6 +49,8 @@ featured: true
 4. Disposable income declines, providing an incentive for consumers to reduce consumption
 5. AD shifts to the left
 
+![Figure 1](chart.jpg)
+
 ## Consequences
 
 - The stagflation led to an increase in the price level and falling real output.
